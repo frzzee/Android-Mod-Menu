@@ -1,0 +1,79 @@
+gg.setVisible(false)
+gg.alert("Shop Loader")
+
+gg.clearResults()
+gg.toast("\n□□□□□0%")
+gg.sleep(500)
+gg.toast("\n■□□□□20%")
+gg.sleep(500)
+gg.toast("\n■■□□□40%")
+gg.sleep(500)
+gg.toast("\n■■■□□60%")
+gg.sleep(500)
+gg.toast("\n■■■■□80%")
+gg.sleep(500)
+gg.toast("\n■■■■■100%")
+gg.sleep(500)
+
+gg.toast("Loaded")
+
+X = 0
+
+function Menu()
+X = 1
+aksel = gg.choice({
+	'Season Pack',
+    'Load IAP',
+	'Exit'},nil,'Shop Loader')
+if aksel == 1 then pss() end
+if aksel == 2 then iap() end
+if aksel == 3 then Exit() end
+XGCK=-1
+end
+
+function pss()
+X = 1
+    gg.alert("Load Season Pack")
+    gg.clearResults()
+	gg.setRanges(gg.REGION_CODE_APP)
+	gg.searchNumber(':SPASS', 1,false, gg.SIGN_EQUAL,0, -1)
+	gg.getResults(20000)
+	gg.editAll(':0', 1)
+	gg.toast("Season Pack Loaded")
+	XGCK=-1
+end
+
+function iap()
+X=1
+    gg.setVisible(false)
+    gg.alert("Load IAP")
+    gg.clearResults()
+    gg.setRanges(gg.REGION_OTHER| gg.REGION_C_ALLOC)
+	gg.searchNumber(':season', 1,false, gg.SIGN_EQUAL,0, -1)
+	gg.getResults(20000)
+	gg.editAll(':global', 1)
+	gg.clearResults()
+    gg.setRanges(gg.REGION_OTHER| gg.REGION_C_ALLOC)
+    gg.searchNumber(':global', 1,false,gg.SIGN_EQUAL,0, -1)
+    gg.getResults(20000)
+    gg.editAll('0', 1)
+	gg.toast("Check Shop")
+	XGCK=-1
+end
+
+function Exit()
+gg.toast("Re-open your game")
+os.exit()
+end
+
+cs = 'Oof'
+while(true)do
+if gg.isVisible(true) then
+XGCK=1
+gg.setVisible(false)
+end
+gg.clearResults()
+if XGCK==1 then
+Menu()
+end
+end
